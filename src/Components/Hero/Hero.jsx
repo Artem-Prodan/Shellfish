@@ -7,11 +7,11 @@ export default function Hero() {
     <section className="hero">
       <div className="container hero__inner">
         <div className="hero__content">
-          <h1>Little Lemon</h1>
-          <p>We are a family owned Mediterranean restaurant.</p>
+          <h1>Shellfish</h1>
+          <p>It's okay to be Shellfish.</p>
 
           <Link to="/reservation" className="hero__button">
-            Reserve a table
+            Reserve
           </Link>
         </div>
       </div>

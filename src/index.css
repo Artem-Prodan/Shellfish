@@ -40,6 +40,9 @@
 
   --container-width: 1200px;
 
+   /* Height offset for sticky header */
+  --header-offset: 70px;
+
   /* Radius */
 
   --radius-sm: 8px;
@@ -79,6 +82,28 @@ body {
 ::selection {
   background: var(--color-secondary);
   color: var(--color-text);
+}
+
+/* =========================
+   Anchor scroll offset
+========================= */
+
+/*
+  when click:
+
+  #about
+  #menu
+  #specials
+  #reservation
+
+  browser will scroll to the element, but the sticky header will not cover the top of the section. I use scroll-margin-top to offset the scroll position by the height of the header.
+*/
+
+#about,
+#menu,
+#specials,
+#reservation {
+  scroll-margin-top: var(--header-offset);
 }
 
 /* =========================
