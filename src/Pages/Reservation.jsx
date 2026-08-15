@@ -1,0 +1,183 @@
+import { useState } from "react";
+import "./Reservation.css";
+import { useLocation } from "react-router-dom";
+
+export default function Reservation() {
+  const location = useLocation();
+  const dish = location.state?.dish;
+
+  const availableTimes = ["17:00", "18:00", "19:00", "20:00", "21:00"];
+
+  const [form, setForm] = useState({
+    date: "",
+    time: "",
+    guests: 1,
+  });
+
+  const [errors, setErrors] = useState({});
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [lastBooking, setLastBooking] = useState(null);
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+
+    setForm((prev) => ({
+      ...prev,
+      [name]: name === "guests" ? Number(value) : value,
+    }));
+
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+  }
+
+  function validate() {
+    const err = {};
+    const today = new Date().toISOString().split("T")[0];
+
+    if (!form.date) err.date = "Select date";
+    if (form.date && form.date < today) err.date = "Past date not allowed";
+
+    if (!form.time) err.time = "Select time";
+    if (form.guests < 1) err.guests = "Min 1 guest";
+
+    return err;
+  }
+
+  const isFormValid = Object.keys(validate()).length === 0;
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const err = validate();
+    if (Object.keys(err).length) {
+      setErrors(err);
+      return;
+    }
+
+    const newBooking = {
+      id: Date.now(),
+      dish: dish || null,
+      ...form,
+    };
+
+    const saved = localStorage.getItem("bookings");
+    const parsed = saved ? JSON.parse(saved) : [];
+
+    localStorage.setItem(
+      "bookings",
+      JSON.stringify([...parsed, newBooking])
+    );
+
+    setLastBooking(newBooking);
+    setIsSuccess(true);
+
+    setForm({ date: "", time: "", guests: 1 });
+  }
+
+  if (isSuccess && lastBooking) {
+    return (
+      <section className="booking">
+        <div className="container">
+          <div className="booking__success">
+            <div className="success__badge">✓</div>
+
+            <h1>Booking confirmed</h1>
+
+            <div className="success__card">
+              <p><strong>Date:</strong> {lastBooking.date}</p>
+              <p><strong>Time:</strong> {lastBooking.time}</p>
+              <p><strong>Guests:</strong> {lastBooking.guests}</p>
+              {lastBooking.dish && <p><strong>Dish:</strong> {lastBooking.dish}</p>}
+            </div>
+
+            <button onClick={() => setIsSuccess(false)}>
+              Make another booking
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="booking">
+      <div className="container">
+
+        <div className="booking__layout">
+
+          {/* FORM */}
+          <div className="booking__card">
+            <h1>Book a table</h1>
+
+            {dish && (
+              <div className="booking__context">
+                Booking: <strong>{dish}</strong>
+              </div>
+            )}
+
+            <form className="booking__form" onSubmit={handleSubmit}>
+              <label>
+                Date
+                <input
+                  type="date"
+                  name="date"
+                  value={form.date}
+                  min={new Date().toISOString().split("T")[0]}
+                  onChange={handleChange}
+                  className={errors.date ? "input-error" : ""}
+                />
+                {errors.date && <span className="error">{errors.date}</span>}
+              </label>
+
+              <label>
+                Time
+                <select
+                  name="time"
+                  value={form.time}
+                  onChange={handleChange}
+                >
+                  <option value="">Select time</option>
+                  {availableTimes.map((t) => (
+                    <option key={t} value={t}>{t}</option>
+                  ))}
+                </select>
+                {errors.time && <span className="error">{errors.time}</span>}
+              </label>
+
+              <label>
+                Guests
+                <input
+                  type="number"
+                  name="guests"
+                  min="1"
+                  max="10"
+                  value={form.guests}
+                  onChange={handleChange}
+                />
+                {errors.guests && (
+                  <span className="error">{errors.guests}</span>
+                )}
+              </label>
+
+              <button disabled={!isFormValid}>
+                Confirm reservation
+              </button>
+            </form>
+          </div>
+
+          {/* LIVE PREVIEW */}
+          <div className="booking__preview">
+            <h3>Summary</h3>
+
+            <div className="preview__card">
+              <p>{form.date || "Pick a date"}</p>
+              <p>{form.time || "Pick a time"}</p>
+              <p>{form.guests} guest(s)</p>
+              {dish && <p>{dish}</p>}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}

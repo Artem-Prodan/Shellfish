@@ -1,0 +1,19 @@
+.menu {
+  padding: 60px 0;
+}
+
+.menu__header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.menu__header h2{
+  font-size: 32px;
+}
+
+.menu__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 320px));
+  justify-content: center;
+  gap: 32px;
+}

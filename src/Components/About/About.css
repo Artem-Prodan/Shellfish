@@ -1,0 +1,17 @@
+.about {
+  padding: 60px 0;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.about__title {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.about__text {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
