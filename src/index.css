@@ -17,6 +17,10 @@
 :root {
   color-scheme: light;
 
+  /* Fonts */
+  --font-body: "Manrope", sans-serif;
+  --font-heading: "Gloock", serif;
+
   /* Brand */
 
   --color-primary: #495e57;
@@ -45,9 +49,9 @@
 
   /* Radius */
 
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
+  --radius-sm: 5px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
 
   /* Shadow */
 
@@ -70,10 +74,10 @@ html {
 body {
   margin: 0;
   height: 100%;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
   background: var(--color-background);
   color: var(--color-text);
-  line-height: 1.6;
+  line-height: 1.4;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -113,8 +117,12 @@ body {
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
   line-height: 1.2;
+  font-weight: 400;
 }
 
 a {

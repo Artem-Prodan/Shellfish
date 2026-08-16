@@ -55,12 +55,12 @@ export default function Header() {
               About
             </a>
 
-            <a href="#menu" onClick={closeMenu}>
-              Menu
+             <a href="#visit" onClick={closeMenu}>
+              Visit
             </a>
 
-            <a href="#specials" onClick={closeMenu}>
-              Specials
+            <a href="#menu" onClick={closeMenu}>
+              Menu
             </a>
 
             <a href="#reservation" onClick={closeMenu}>

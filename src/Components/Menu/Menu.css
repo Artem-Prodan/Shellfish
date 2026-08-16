@@ -1,19 +1,66 @@
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
 .menu {
   padding: 60px 0;
 }
 
 .menu__header {
-  text-align: center;
+  max-width: 620px;
+  text-align: left;
+}
+
+.menu__title {
+  font-size: 34px;
+  margin-bottom: 12px;
+}
+
+.menu__description {
+  font-size: 14px;
   margin-bottom: 20px;
 }
 
-.menu__header h2{
-  font-size: 32px;
+/*MENU BANNER*/
+
+.menu__banner {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
 }
 
-.menu__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 320px));
-  justify-content: center;
-  gap: 32px;
+.menu__banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.menu__banner-content {
+  position: absolute;
+  inset: 0;
+
+  left: 20px;
+  max-width: 250px;
+  margin: 50px;
+}
+
+.menu__button {
+  margin-top: 10px;
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  background: var(--color-secondary);
+  color: black;
+  padding: 5px 15px;
+  border-radius: var(--radius-sm);
+  border: none;
+  font-weight: bold;
+  transition: var(--transition);
+}
+
+.menu__button:hover {
+  opacity: 0.8;
 }

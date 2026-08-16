@@ -3,31 +3,34 @@
   top: 0;
   z-index: 1000;
 
-  backdrop-filter: blur(8px);
   background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
   box-shadow: var(--shadow-sm);
 }
 
 .header__inner {
   position: relative;
 
-  display: flex;
+  display: flex !important;
+  flex-direction: row !important;
   align-items: center;
   justify-content: space-between;
 
   padding: 16px 0;
 }
 
+/* LOGO */
+
 .logo {
   display: flex;
   align-items: center;
-  cursor: pointer;
 }
 
 .logo img {
+  display: block;
   height: 42px;
   width: auto;
-  object-fit: contain;
+
   transition: var(--transition);
 }
 
@@ -35,15 +38,14 @@
   transform: scale(1.05);
 }
 
-/* navigation */
+/* NAV */
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 24px;
 }
 
-/* hamburger button */
+/* HAMBURGER */
 
 .nav__hamburger {
   display: flex;
@@ -52,7 +54,6 @@
 
   width: 42px;
   height: 42px;
-
   padding: 0;
 
   border: 2px solid var(--color-primary);
@@ -65,14 +66,12 @@
   font-weight: 700;
 
   cursor: pointer;
-
   transition: var(--transition);
 }
 
 .nav__hamburger:hover {
   background: var(--color-secondary);
   color: #000;
-
   transform: translateY(-2px);
   box-shadow: var(--shadow-sm);
 }
@@ -82,31 +81,25 @@
   color: #000;
 }
 
-/* dropdown menu */
+/* DROPDOWN */
 
 .header__menu {
   position: absolute;
   top: calc(100% + 10px);
   right: 0;
 
-  z-index: 1001;
-
   display: flex;
   flex-direction: column;
 
   min-width: 180px;
-
   padding: 8px 0;
 
   background: var(--color-surface);
   border-radius: var(--radius-md);
-
   box-shadow: var(--shadow-md);
 
   overflow: hidden;
 }
-
-/* menu links */
 
 .header__menu a {
   display: block;
@@ -114,8 +107,6 @@
   padding: 12px 20px;
 
   color: var(--color-text);
-  text-decoration: none;
-
   font-weight: 600;
 
   transition: var(--transition);
@@ -124,11 +115,4 @@
 .header__menu a:hover {
   background: var(--color-secondary);
   color: #000;
-}
-
-/* active route */
-
-.nav__link.active {
-  color: var(--color-primary);
-  font-weight: bold;
 }
