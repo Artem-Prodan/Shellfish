@@ -78,7 +78,8 @@ export default function Reservation() {
       <section className="booking">
         <div className="container">
           <div className="booking__success">
-            <div className="success__badge">✓</div>
+            <div className="success__badge">
+              ✓</div>
 
             <h1>Booking confirmed</h1>
 

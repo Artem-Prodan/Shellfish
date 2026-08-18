@@ -1,6 +1,4 @@
 import "./Menu.css";
-import { menuDishes } from "../../data/menu";
-import DishCard from "../DishCard/DishCard";
 import menuBanner from "../../assets/images/plchldr.png";
 import { Link } from "react-router-dom";
 

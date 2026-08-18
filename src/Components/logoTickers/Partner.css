@@ -1,0 +1,23 @@
+
+.partner-ticker {
+  width: 100%;
+}
+
+.partner-ticker__logo {
+  display: flex;
+  align-items: center;
+
+  margin-right: 40px;
+}
+
+/* .partner-ticker__logo img {
+  display: block;
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+} */
+
+.partner-ticker__divider {
+  font-weight: 800;
+  margin-left: 40px;
+}

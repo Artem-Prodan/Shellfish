@@ -4,7 +4,7 @@ import "./Hero.css";
 
 export default function Hero() {
   return (
-    <section className="hero">
+    <section id="hero" className="hero">
       <div className="container hero__inner">
         <div className="hero__content">
           <h1>It's okay to be <br/>a little Shellfish.</h1>

@@ -35,3 +35,7 @@
 .hero__button:hover {
   opacity: 0.8;
 }
+
+#hero {
+  scroll-margin-top: 120px !important;
+}
