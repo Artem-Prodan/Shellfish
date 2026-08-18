@@ -1,53 +1,54 @@
 .visit {
-  padding-top: 60px;
+  padding-top: 100px;
 }
 
 .visit__header {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1.5fr) minmax(250px, 0.5fr);
   align-items: start;
 }
 
+/* LEFT */
 
-/* =========================
-   LEFT
-========================= */
-
-.visit__title {
-  font-size: 34px;
-  text-align: left;
-  margin-bottom: 12px;
+.visit__description {
+  width: clamp(500px, 55vw, 900px);
 }
 
-.visit__text {
-  max-width: 620px;
-  font-size: 14px;
+.visit__title {
+  font-size: clamp(3rem, 4vw, 3.8rem);
+  line-height: 1.2;
   text-align: left;
   margin-bottom: 20px;
 }
 
-/* =========================
-   RIGHT
-========================= */
+.visit__text {
+  font-size: clamp(1rem, 1.2vw, 1.9rem);
+  line-height: 1.2;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+/* RIGHT */
 
 .visit__info {
-  padding-top: 18px;
+  padding-top: 40px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-
+  gap: 15px;
   justify-self: end;
   text-align: right;
 }
 
 .visit__accessibility {
-  font-size: 16px;
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
+  margin-bottom: 12px;
 }
 
 address {
   font-family: var(--font-heading);
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
   font-weight: 500;
-  /* font-style: normal; */
+  font-style: normal;
 }
 
 #visit {

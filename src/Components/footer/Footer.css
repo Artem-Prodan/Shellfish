@@ -5,6 +5,8 @@
 }
 
 .footer__inner {
+  display: flex;
+  flex-direction: column;
   gap: 40px;
   padding: 40px 0;
 }
@@ -14,14 +16,14 @@
 .footer__links {
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 10px;
 }
 
 .footer__links button {
   color: white;
   background-color: rgba(0, 0, 0, 0);
   border: none;
-  text-decoration: none;
+  padding: 5px 10px;
   font-size: 14px;
   transition: var(--transition);
 }

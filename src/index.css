@@ -42,7 +42,7 @@
 
   /* Layout */
 
-  --container-width: 1400px;
+  --container-width: 1320px;
 
    /* Height offset for sticky header */
   --header-offset: 70px;
@@ -156,7 +156,7 @@ img {
 }
 
 .container {
-  width: min(100% - 2rem, var(--container-width));
+  width: min(100% - 10%, var(--container-width));
   margin-inline: auto;
 }
 
