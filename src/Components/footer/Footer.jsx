@@ -1,16 +1,46 @@
 import "./Footer.css";
 import logo from "../../assets/icons/logo1.png";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Footer() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleNavigation = (path, sectionId) =>{
+    // If we currently on Home page, scroll to chosen element
+    if (location.pathname === "/" && sectionId){
+      document.getElementById(sectionId)?.scrollIntoView();
+      return;
+    }
+    // If we on any other page, redirect to right page
+    navigate(path);
+  };
+
   return (
     <footer className="footer">
       <div className="container footer__inner">
 
           <div className="footer__links">
-            <a href="#hero">Home</a>
-            <a href="#about">About</a>
-            <a href="#menu">Menu</a>
-            <a href="#reservation">Reservations</a>
+            <button type="button"
+              onClick={()=>handleNavigation("/", "hero")}
+              >
+                Home
+                </button>
+              <button type="button"
+              onClick={()=>handleNavigation("/about", "about")}
+              >
+                About
+                </button>
+              <button type="button"
+              onClick={()=>handleNavigation("/menu", "menu")}
+              >
+                Menu
+                </button>
+              <button type="button"
+              onClick={()=>handleNavigation("/reservation", "reservation")}
+              >
+                Reservation
+                </button>
           </div>
 
           <div className="footer__brand">

@@ -17,14 +17,16 @@
   gap: 40px;
 }
 
-.footer__links a {
+.footer__links button {
   color: white;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
   text-decoration: none;
   font-size: 14px;
   transition: var(--transition);
 }
 
-.footer__links a:hover {
+.footer__links button:hover {
   color: var(--color-secondary);
 }
 
