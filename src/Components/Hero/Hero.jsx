@@ -9,9 +9,9 @@ export default function Hero() {
         <div className="hero__content">
           <h1>It's okay to be <br/>a little Shellfish.</h1>
 
-          <Link to="/reservation" className="hero__button">
+          <a href="#reservation" className="hero__button">
             Reserve
-          </Link>
+          </a>
         </div>
       </div>
     </section>

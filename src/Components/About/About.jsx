@@ -11,7 +11,7 @@ export default function About() {
           <p className="about__text">
             Lorem ipsum dolor sit amet consectetur. Vitae enim mattis massa amet orci odio mi tortor quam. Eleifend lectus faucibus arcu cursus maecenas quis sit. Sit aliquet ultrices pellentesque lacus suspendisse felis rhoncus mauris. Porta dolor elit nullam magnis libero nibh. Nisl vitae nibh rhoncus ut sit tristique. Adipiscing a eu orci suscipit porttitor. Volutpat neque congue mattis nisi pharetra et porta aenean quis. Id platea sed scelerisque turpis tortor mauris accumsan purus.
           </p>
-          <Link to="/reservation" className="about__button">
+          <Link to="/about" className="about__button">
                 View
            </Link>
         </div>

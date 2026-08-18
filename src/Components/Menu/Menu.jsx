@@ -21,9 +21,9 @@ export default function Menu() {
             <div className="menu__banner-content">
               <p>Lorem ipsum dolor sit amet consectetur. Vitae enim mattis massa amet orci odio mi tortor quam.</p>
 
-              <Link to="/reservation" className="menu__button">
+              <a href="/menu" className="menu__button">
                 Menu
-              </Link>
+              </a>
             </div>
         </div>
 

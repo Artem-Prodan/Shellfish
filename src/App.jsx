@@ -4,7 +4,8 @@ import MainLayout from "./layout/MainLayout";
 
 import Home from "./pages/Home";
 import Reservation from "./pages/Reservation";
-import Bookings from "./pages/Bookings";
+import About from "./pages/About";
+import Menu from "./pages/Menu";
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/reservation" element={<Reservation />} />
-        <Route path="/bookings" element={<Bookings />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/menu" element={<Menu />} />
       </Route>
     </Routes>
   );
