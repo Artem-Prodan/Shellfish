@@ -1,73 +1,84 @@
-import { useEffect, useRef, useState } from "react";
+
 import "./Header.css";
 import logo from "../../assets/icons/logo1.png";
-import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef(null);
+const location = useLocation();
+const navigate = useNavigate();
 
-  function toggleMenu() {
-    setIsMenuOpen((prev) => !prev);
-  }
-  function closeMenu() {
-    setIsMenuOpen(false);
-  }
+const handleNavigation = (path, sectionId) =>{
+    // If we currently on Home page, scroll to chosen element
+    if (location.pathname === "/" && sectionId){
+      document.getElementById(sectionId)?.scrollIntoView();
+      return;
+    }
+    // If we on any other page, redirect to right page
+    navigate(path);
+  };
 
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        closeMenu();
-      }
-    }
-    if (isMenuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-  }, [isMenuOpen]);
+  const isHome = location.pathname === "/";
 
   return (
-    <header className="header" ref={menuRef}>
+    <header className="header">
       <div className="container header__inner">
 
-        <Link to="/" className="logo" onClick={closeMenu}>
-          <img src={logo} alt="Shellfish" />
-        </Link>
+          <div className="header__links">
 
-        <nav className="nav">
+          <button type="button" className="logo"
+              onClick={()=>handleNavigation("/", "hero")}
+              >
+                <img src={logo} alt="Shellfish" />
+                </button>
 
-          <button
-            type="button"
-            className={`nav__hamburger ${isMenuOpen ? "is-open" : ""}`}
-            onClick={toggleMenu}
-            aria-label="Open navigation menu"
-            aria-expanded={isMenuOpen}
-          >
-            H
-          </button>
-        </nav>
+          <nav className="nav">
 
-        {isMenuOpen && (
-          <div className="header__menu">
-            <a href="#about" onClick={closeMenu}>
-              About
-            </a>
+                {isHome ? (
+                  <>
+                  <button type="button"
+                    onClick={()=>handleNavigation("/about", "about")}
+                    >
+                      About
+                     </button>
 
-             <a href="#visit" onClick={closeMenu}>
-              Visit
-            </a>
-
-            <a href="#menu" onClick={closeMenu}>
-              Menu
-            </a>
-
-            <a href="#reservation" onClick={closeMenu}>
-              Reservation
-            </a>
+                    <button type="button"
+                      onClick={()=>handleNavigation("/", "visit")}
+                      >
+                        Visit
+                      </button>
+                      <button type="button"
+                        onClick={()=>handleNavigation("/menu", "menu")}
+                        >
+                          Menu
+                         </button>
+                  </>
+                ) : (
+                <>
+                  <button type="button"
+                    onClick={()=>handleNavigation("/", "hero")}
+                    >
+                      Home
+                    </button>
+                  <button type="button"
+                    onClick={()=>handleNavigation("/about", "about")}
+                    >
+                      About
+                     </button>
+                     <button type="button"
+                        onClick={()=>handleNavigation("/menu", "menu")}
+                        >
+                          Menu
+                         </button>
+                  </>)}
+          </nav>
           </div>
-        )}
+
+        <button type="button" className="header__reserve"
+              onClick={()=>handleNavigation("/reservation", "reservation")}
+              >
+                Reserve
+                </button>
 
       </div>
     </header>

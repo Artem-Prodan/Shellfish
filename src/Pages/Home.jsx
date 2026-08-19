@@ -5,11 +5,14 @@ import Menu from "../components/menu/Menu.jsx";
 import ReservationForm from "../components/reservation/ReservationForm.jsx";
 import "./Home.css";
 import PartnerTicker from "../components/logoTickers/PartnerTicker.jsx";
+import { useOutletContext } from "react-router-dom";
 
 export default function Home() {
+  const {setShowHeaderReserve} = useOutletContext();
+
   return (
     <>
-        <Hero />
+        <Hero setShowHeaderReserve={setShowHeaderReserve}/>
         <About />
         <PartnerTicker />
 

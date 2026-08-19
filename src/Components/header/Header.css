@@ -2,20 +2,16 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(8px);
   box-shadow: var(--shadow-sm);
 }
 
 .header__inner {
-  position: relative;
-
   display: flex !important;
   flex-direction: row !important;
   align-items: center;
   justify-content: space-between;
-
   padding: 16px 0;
 }
 
@@ -24,13 +20,15 @@
 .logo {
   display: flex;
   align-items: center;
+  margin-right: 20px;
+  border: none;
+  background: transparent;
 }
 
 .logo img {
   display: block;
   height: 42px;
   width: auto;
-
   transition: var(--transition);
 }
 
@@ -40,79 +38,49 @@
 
 /* NAV */
 
+.header__links{
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
 .nav {
   display: flex;
-  align-items: center;
+  justify-self: flex-start;
+  gap: 10px;
 }
 
-/* HAMBURGER */
-
-.nav__hamburger {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 42px;
-  height: 42px;
-  padding: 0;
-
-  border: 2px solid var(--color-primary);
-  border-radius: 10%;
-
-  background: transparent;
-  color: var(--color-primary);
-
-  font-size: 16px;
-  font-weight: 700;
-
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.nav__hamburger:hover {
-  background: var(--color-secondary);
-  color: #000;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
-}
-
-.nav__hamburger.is-open {
-  background: var(--color-secondary);
-  color: #000;
-}
-
-/* DROPDOWN */
-
-.header__menu {
-  position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
-
-  display: flex;
-  flex-direction: column;
-
-  min-width: 180px;
-  padding: 8px 0;
-
-  background: var(--color-surface);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
-
-  overflow: hidden;
-}
-
-.header__menu a {
-  display: block;
-
-  padding: 12px 20px;
-
+.nav button {
+  padding: 5px 20px;
   color: var(--color-text);
   font-weight: 600;
+  transition: var(--transition);
+  border: none;
+  background: transparent;
+}
+
+.nav button:hover {
+  color: var(--color-secondary);
+}
+
+/* RESERVE */
+
+.header__reserve {
+  display: inline-block;
+  min-width: 100px;
+  padding: 10px 30px;
+  text-align: center;
+  border: none;
+
+  background: var(--color-secondary);
+  color: #000;
+
+  border-radius: var(--radius-sm);
+  font-weight: bold;
 
   transition: var(--transition);
 }
 
-.header__menu a:hover {
-  background: var(--color-secondary);
-  color: #000;
+.header__reserve:hover {
+  opacity: 0.8;
 }
