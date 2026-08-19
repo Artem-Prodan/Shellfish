@@ -10,10 +10,8 @@ export default function PartnerTicker() {
     <Marquee className="partner-ticker"
     speed={30}
     autoFill
-    gradient
-    gradientColor="white"
-    gradientWidth={40}
-    direction="right">
+    gradient={false}
+    direction="left">
         {partnerLogos.map((logo, index) => (
           <div key={index} className="partner-ticker__logo">
             {logo}

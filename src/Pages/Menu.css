@@ -1,0 +1,157 @@
+/* =========================
+   MENU HEAD
+========================= */
+.menu {
+  padding-top: 60px;
+}
+
+.menu__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  margin-bottom: 80px;
+}
+.menu__head h1 {
+  font-size: clamp(3.65rem, 5vw, 5rem);
+  line-height: 1.1;
+}
+.menu__head h2 {
+  margin-top: 60px;
+  font-size: clamp(3rem, 4vw, 3.8rem);
+  line-height: 1.2;
+}
+.menu__head p {
+  margin-top: 30px;
+  max-width: clamp(300px, 50vw, 420px);
+  font-size: clamp(1rem, 1.2vw, 1.9rem);
+  line-height: 1.2;
+}
+
+/* =========================
+   MENU BODY
+========================= */
+.menu__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+}
+@media (max-width: 800px) {
+  .menu__body {
+    grid-template-columns: 1fr;
+    gap: 0px;
+  }
+}
+
+/* =========================
+   CATEGORY
+========================= */
+.menu__category {
+  border-top: 1px solid var(--color-border);
+}
+
+.menu__category-header {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 25px 20px;
+
+  border: none;
+  background: transparent;
+
+  text-align: left;
+  cursor: pointer;
+}
+.menu__category-header h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 3.8vw, 3.6rem);
+  line-height: 1.2;
+  font-weight: 400;
+}
+.menu__category-header:hover{
+  background-color: rgb(242, 242, 242);
+}
+
+/* =========================
+   ARROW
+========================= */
+.menu__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 30px;
+
+  transition: transform 0.35s ease;
+}
+.menu__category.is-open .menu__arrow {
+  transform: rotate(-90deg);
+}
+.menu__arrow img,
+.menu__category.is-open .menu__arrow img{
+  width: 18px;
+}
+
+/* =========================
+   DISHES
+========================= */
+.menu__dishes {
+  display: grid;
+  grid-template-rows: 0fr;
+
+  overflow: hidden;
+
+  transition:
+    grid-template-rows 0.4s ease,
+    padding-bottom 0.4s ease;
+}
+
+.menu__dishes-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.menu__category.is-open .menu__dishes {
+  grid-template-rows: 1fr;
+  padding-bottom: 25px;
+}
+
+/* =========================
+   DISH
+========================= */
+.menu__dish {
+  padding: 20px 0;
+
+  border-top: 1px solid var(--color-border);
+}
+
+.menu__dish-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+.menu__dish h3 {
+  font-size: clamp(1.25rem, 1.5vw, 1.5rem);
+  font-weight: 500;
+}
+
+.menu__price {
+  flex-shrink: 0;
+
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
+  font-weight: 600;
+}
+
+.menu__dish p {
+  margin-top: 8px;
+
+  font-size: clamp(1rem, 1.2vw, 1.9rem);
+  line-height: 1.2;
+}
