@@ -4,7 +4,7 @@ import logo from "../../assets/icons/logo1.png";
 import { useLocation, useNavigate } from "react-router-dom";
 
 
-export default function Header() {
+export default function Header({showReserve}) {
 const location = useLocation();
 const navigate = useNavigate();
 
@@ -74,11 +74,23 @@ const handleNavigation = (path, sectionId) =>{
           </nav>
           </div>
 
-        <button type="button" className="header__reserve"
-              onClick={()=>handleNavigation("/reservation", "reservation")}
+          {isHome ? (
+            <button type="button"
+                className={`header__reserve ${
+                  showReserve ? "is-visible" : ""
+                  }`}
+                onClick={()=>handleNavigation("/reservation", "reservation")}
               >
                 Reserve
                 </button>
+            ) :(
+            <button type="button"
+                className={`header__reserve is-visible`}
+                onClick={()=>handleNavigation("/reservation", "reservation")}
+              >
+                Reserve
+                </button>
+          )}
 
       </div>
     </header>

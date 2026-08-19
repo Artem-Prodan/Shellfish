@@ -69,18 +69,35 @@
   display: inline-block;
   min-width: 100px;
   padding: 10px 30px;
+
   text-align: center;
   border: none;
-
   background: var(--color-secondary);
   color: #000;
-
   border-radius: var(--radius-sm);
+
   font-weight: bold;
 
-  transition: var(--transition);
+  /* animation */
+  opacity: 0;
+  transform: translateX(-800px);
+  pointer-events: none;
+  cursor: default;
+
+  transition:
+    opacity 0.42s ease,
+    transform 0.45s ease;
 }
 
-.header__reserve:hover {
+/* RESERVE-VISIBLE */
+.header__reserve.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* hover only when visible */
+.header__reserve.is-visible:hover {
   opacity: 0.8;
 }

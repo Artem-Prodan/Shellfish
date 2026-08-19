@@ -7,6 +7,7 @@ import "./Home.css";
 import PartnerTicker from "../components/logoTickers/PartnerTicker.jsx";
 import { useOutletContext } from "react-router-dom";
 
+
 export default function Home() {
   const {setShowHeaderReserve} = useOutletContext();
 
