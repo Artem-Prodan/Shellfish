@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
+import FooterTicker from "../components/logoTickers/FooterTicker";
 
 function MainLayout() {
   const [showHeaderReserve, setShowHeaderReserve] = useState(false);
@@ -17,7 +18,7 @@ function MainLayout() {
       <main className="app-main">
         <Outlet context={{setShowHeaderReserve}}/>
       </main>
-
+      <FooterTicker />
       <Footer />
     </div>
   );
