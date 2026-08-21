@@ -1,3 +1,15 @@
+.container.about__box{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 100px;
+
+  min-width: 0;
+}
+
+/* =========================
+   LEFT / INFO
+========================= */
 .about {
   padding-top: 100px;
   margin-bottom: 80px;
@@ -41,4 +53,96 @@
 
 .about__button:hover {
   opacity: 0.8;
+}
+
+/* =========================
+   RIGHT / IMAGES
+========================= */
+.about__images {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  min-height: 500px;
+  overflow: hidden;
+
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* =========================
+   IMAGE
+========================= */
+
+.about__image {
+  position: absolute;
+  top: 50%;
+  left: 22%;
+
+  width: 26vw;
+  max-width: 600px;
+  height: 400px;
+  object-fit: cover;
+
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  will-change: transform, filter;
+}
+
+/* =========================
+   ADAPTIVITY
+========================= */
+@media (max-width: 1126px) {
+  .container.about__box {
+    flex-direction: column;
+    gap: 0;
+  }
+  .about__info {
+    margin-top: -40px;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+  }
+  .about__text {
+    text-align: center;
+  }
+
+  .about__images {
+    margin-top: -60px;
+    margin-bottom: -60px;
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+  }
+  .about__image {
+    --image-width: clamp(230px, 48vw, 360px);
+
+    width: var(--image-width);
+    height: 370px;
+    left: 50%;
+    margin-left: calc(var(--image-width) / -2);
+  }
+}
+
+/* =========================
+   VERY SMALL SCREENS
+========================= */
+@media (max-width: 500px) {
+  .about {
+    padding-top: 60px;
+  }
+
+  .about__images {
+    margin-top: -80px;
+    margin-bottom: -80px;
+    height: 380px;
+    overflow: hidden;
+  }
+  .about__image {
+    --image-width: 240px;
+    width: var(--image-width);
+    height: 300px;
+
+    left: 50%;
+    margin-left: calc(var(--image-width) / -2);
+  }
 }

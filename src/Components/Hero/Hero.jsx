@@ -14,7 +14,7 @@ export default function Hero({setShowHeaderReserve}) {
     // Observer which tracks when button is visible or not
     const observer = new IntersectionObserver(
       ([entry]) =>{
-        console.log(entry);
+        // console.log(entry);
         setShowHeaderReserve(!entry.isIntersecting);
       },
       {

@@ -1,6 +1,5 @@
 import "./Menu.css";
 import menuBanner from "../../assets/images/plchldr.png";
-import { Link } from "react-router-dom";
 
 export default function Menu() {
   return (
