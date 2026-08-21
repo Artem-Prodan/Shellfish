@@ -91,6 +91,9 @@
 
 /* RESERVE-VISIBLE */
 .header__reserve.is-visible {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 1;
   transform: translateX(0);
   pointer-events: auto;

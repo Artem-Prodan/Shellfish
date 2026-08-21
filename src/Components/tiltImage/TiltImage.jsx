@@ -1,12 +1,20 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import "../tiltImage/TiltImage.css";
 
 export default function TiltImage({
   src,
   alt = "",
   className = "",
-  maxTilt = 12,
+
+  maxTilt = 15,
+  perspective = 1000,
   enableTilt = true,
+
+  wrapperClassName = "",
+  wrapperStyle = {},
+  wrapperProps = {},
+
   ...motionProps
 }) {
   // mouse motion values
@@ -56,18 +64,28 @@ export default function TiltImage({
   };
 
   return (
-    <motion.img
-      src={src}
-      alt={alt}
-      className={className}
-      onMouseMove={enableTilt ? handleMouseMove : undefined}
-      onMouseLeave={enableTilt ? handleMouseLeave : undefined}
-      style={{
-        rotateX: enableTilt ? rotateX : 0,
-        rotateY: enableTilt ? rotateY : 0,
-        transformStyle: "preserve-3d",
-      }}
-      {...motionProps}
-    />
+      <motion.div
+        className={`tilt-image-wrapper ${wrapperClassName}`}
+        style={{
+          perspective: `${perspective}px`,
+          transformStyle: "preserve-3d",
+          ...wrapperStyle,
+        }}
+          onMouseMove={enableTilt ? handleMouseMove : undefined}
+          onMouseLeave={enableTilt ? handleMouseLeave : undefined}
+        {...wrapperProps}
+        {...motionProps}
+      >
+        <motion.img
+            src={src}
+            alt={alt}
+            className={`tilt-image ${className}`}
+            style={{
+              rotateX: enableTilt ? rotateX : 0,
+              rotateY: enableTilt ? rotateY : 0,
+              transformStyle: "preserve-3d",
+            }}
+          />
+      </motion.div>
   );
 }

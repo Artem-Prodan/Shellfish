@@ -1,6 +1,7 @@
 
 import "./About.css";
 import photo from "../assets/images/plchldr.png";
+import TiltImage from "../components/tiltImage/TiltImage";
 
 export default function About() {
   return(
@@ -16,7 +17,13 @@ export default function About() {
 
         <div className="about__bio-block">
             <div className="b-block-1">
-              <img src={photo} alt="Cillian photo"></img>
+              <TiltImage
+                  src={photo}
+                  alt="Cillian photo"
+                  className="about-bio__image"
+                  wrapperClassName="about-bio__image-wrapper"
+                />
+
               <h3>Cillian</h3>
               <p>Shellfish started with two friends and a shared appetite.
               Cillian and Liam met in France while studying to become chefs. Somewhere between long days in the kitchen, late dinners and conversations about the places they wanted to open one day, they became close friends. After graduating, they returned to Ireland and went their separate ways, cooking and working in different restaurants. Years later, the idea brought them back to the same table.
@@ -24,7 +31,12 @@ export default function About() {
             </div>
 
             <div className="b-block-2">
-              <img src={photo} alt="Liam photo"></img>
+              <TiltImage
+                  src={photo}
+                  alt="Liam photo"
+                  className="about-bio__image"
+                  wrapperClassName="about-bio__image-wrapper"
+                />
               <h3>Liam</h3>
               <p>Shellfish started with two friends and a shared appetite.
               Cillian and Liam met in France while studying to become chefs. Somewhere between long days in the kitchen, late dinners and conversations about the places they wanted to open one day, they became close friends. After graduating, they returned to Ireland and went their separate ways, cooking and working in different restaurants. Years later, the idea brought them back to the same table.
@@ -41,21 +53,36 @@ export default function About() {
 
         <div className="about__sourcing-block">
             <div className="s-block-1">
-              <img src={photo} alt="farmers photo"></img>
+              <TiltImage
+                  src={photo}
+                  alt="Farmers photo"
+                  className="about-source__image"
+                  wrapperClassName="about-source__image-wrapper"
+                />
               <h3>Our lovely farmers</h3>
               <p>Cillian and Liam met in France while studying to become chefs. Somewhere between long days in the kitchen, late dinners and conversations about the places they wanted to open one day, they became close friends. 
               </p>
             </div>
 
             <div className="s-block-2">
-              <img src={photo} alt="Nature and care photo"></img>
+              <TiltImage
+                  src={photo}
+                  alt="Nature and care photo"
+                  className="about-source__image"
+                  wrapperClassName="about-source__image-wrapper"
+                />
               <h3>Nature and care</h3>
               <p>Cillian and Liam met in France while studying to become chefs. Somewhere between long days in the kitchen, late dinners and conversations about the places they wanted to open one day, they became close friends. 
               </p>
             </div>
 
             <div className="s-block-3">
-              <img src={photo} alt="Seasonal catch photo"></img>
+              <TiltImage
+                  src={photo}
+                  alt="Seasonal catch photo"
+                  className="about-source__image"
+                  wrapperClassName="about-source__image-wrapper"
+                />
               <h3>Seasonal catch</h3>
               <p>Cillian and Liam met in France while studying to become chefs. Somewhere between long days in the kitchen, late dinners and conversations about the places they wanted to open one day, they became close friends. 
               </p>

@@ -68,12 +68,10 @@
   perspective: 1000px;
   transform-style: preserve-3d;
 }
-
 /* =========================
    IMAGE
 ========================= */
-
-.about__image {
+.about__image-wrapper {
   position: absolute;
   top: 50%;
   left: 22%;
@@ -81,8 +79,14 @@
   width: 26vw;
   max-width: 600px;
   height: 400px;
-  object-fit: cover;
+  transform-style: preserve-3d;
+}
+.about__image {
+  width: 100%;
+  height: 100%;
+  display: block;
 
+  object-fit: cover;
   transform-style: preserve-3d;
   transform-origin: center center;
   will-change: transform, filter;
@@ -105,44 +109,51 @@
   .about__text {
     text-align: center;
   }
-
   .about__images {
-    margin-top: -60px;
-    margin-bottom: -60px;
     width: 100%;
     height: 450px;
+
+    margin-top: -60px;
+    margin-bottom: -60px;
+
     overflow: hidden;
   }
-  .about__image {
+  .about__image-wrapper {
     --image-width: clamp(230px, 48vw, 360px);
 
     width: var(--image-width);
     height: 370px;
+
     left: 50%;
     margin-left: calc(var(--image-width) / -2);
   }
+
 }
 
 /* =========================
    VERY SMALL SCREENS
 ========================= */
 @media (max-width: 500px) {
+
   .about {
     padding-top: 60px;
   }
-
   .about__images {
+    height: 380px;
+
     margin-top: -80px;
     margin-bottom: -80px;
-    height: 380px;
+
     overflow: hidden;
   }
-  .about__image {
+  .about__image-wrapper {
     --image-width: 240px;
+
     width: var(--image-width);
     height: 300px;
 
     left: 50%;
     margin-left: calc(var(--image-width) / -2);
   }
+
 }

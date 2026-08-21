@@ -52,9 +52,15 @@
   text-align: right;
 }
 
-.about__bio img{
+.about-bio__image-wrapper {
   width: 100%;
-  height: 450px;
+  aspect-ratio: 4 / 4;
+}
+.about-bio__image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .about__bio h2{
@@ -100,9 +106,15 @@
   margin-top: 50px;
 }
 
-.about__sourcing img{
+.about-source__image-wrapper {
   width: 100%;
-  height: 280px;
+  aspect-ratio: 4 / 3.5;
+}
+.about-source__image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .about__sourcing h2{

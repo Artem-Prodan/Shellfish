@@ -1,0 +1,9 @@
+
+.tilt-image-wrapper {
+  transform-style: preserve-3d;
+}
+.tilt-image {
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  will-change: transform;
+}

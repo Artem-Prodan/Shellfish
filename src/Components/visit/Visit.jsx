@@ -1,5 +1,11 @@
 import "./Visit.css";
-import { Link } from "react-router-dom";
+import TiltImage from "../tiltImage/TiltImage";
+
+import test1 from "../../assets/images/test1.png";
+import test2 from "../../assets/images/test2.png";
+import test3 from "../../assets/images/test3.png";
+
+const images = [test1, test2, test3];
 
 export default function Visit() {
   return (
@@ -34,6 +40,21 @@ export default function Visit() {
             </address>
           </div>
 
+        </div>
+
+        <div className="visit__images">
+
+            {images.map((image)=>{
+                return(
+                  <TiltImage 
+                    key={image}
+                    src={image}
+                    alt="visit-Shellfish"
+                    className="visit__image"
+                    wrapperClassName="visit__image-wrapper"
+                  />
+                );
+            })}
         </div>
 
       </div>

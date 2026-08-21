@@ -17,7 +17,7 @@ export default function About() {
   useEffect(()=>{
     const interval = setInterval(()=>{
       setFrontIndex((current)=>(current + 1) % images.length);
-    }, 3000);
+    }, 3100);
 
     return () => clearInterval(interval);
   },[]);
@@ -120,9 +120,11 @@ const variants = {
                 key={image}
                 src={image}
                 alt="Shellfish"
+                wrapperClassName="about__image-wrapper"
                 className="about__image"
 
                 //Enable Tilt
+                maxTilt={13}
                 enableTilt={position === "center"}
 
                 //ANIMATION
