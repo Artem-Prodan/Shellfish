@@ -1,0 +1,73 @@
+
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+
+export default function TiltImage({
+  src,
+  alt = "",
+  className = "",
+  maxTilt = 12,
+  enableTilt = true,
+  ...motionProps
+}) {
+  // mouse motion values
+  const imageX = useMotionValue(0);
+  const imageY = useMotionValue(0);
+
+  // smooth mouse motion values with Spring
+  const mouseXSpring = useSpring(imageX, {
+    stiffness: 150,
+    damping: 20,
+  });
+  const mouseYSpring = useSpring(imageY, {
+    stiffness: 150,
+    damping: 20,
+  });
+
+ // rotate transform values
+  const rotateX = useTransform(
+    mouseYSpring,
+    [-0.5, 0.5],
+    [maxTilt, -maxTilt]
+  );
+  const rotateY = useTransform(
+    mouseXSpring,
+    [0.5, -0.5],
+    [maxTilt, -maxTilt]
+  );
+
+  // FUNCTION FOR TRACKING MOUSE POSITION RELATIVE TO OBJECT
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    const xPerc = mouseX / rect.width - 0.5;
+    const yPerc = mouseY / rect.height - 0.5;
+
+    imageX.set(xPerc);
+    imageY.set(yPerc);
+  };
+
+// STOP TILTING IF MOUSE LEAVE
+  const handleMouseLeave = () => {
+    imageX.set(0);
+    imageY.set(0);
+  };
+
+  return (
+    <motion.img
+      src={src}
+      alt={alt}
+      className={className}
+      onMouseMove={enableTilt ? handleMouseMove : undefined}
+      onMouseLeave={enableTilt ? handleMouseLeave : undefined}
+      style={{
+        rotateX: enableTilt ? rotateX : 0,
+        rotateY: enableTilt ? rotateY : 0,
+        transformStyle: "preserve-3d",
+      }}
+      {...motionProps}
+    />
+  );
+}

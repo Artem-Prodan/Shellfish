@@ -1,7 +1,7 @@
 import "./About.css";
 import { Link } from "react-router-dom";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
+import TiltImage from "../tiltImage/TiltImage";
 
 import test1 from "../../assets/images/test1.png";
 import test2 from "../../assets/images/test2.png";
@@ -50,9 +50,6 @@ const variants = {
     ],
     opacity: 1,
     zIndex: 3,
-
-    // TILT CARD EFFECT
-
   },
 
   left: {
@@ -92,46 +89,6 @@ const variants = {
   },
 };
 
-// TILT VARIABLES
-// mouse motion values
- const imageX = useMotionValue(0);
- const imageY = useMotionValue(0);
- // smooth mouse motion values
- const mouseXspring = useSpring(imageX);
- const mouseYspring = useSpring(imageY);
- // rotate transform values
- const rotateX = useTransform(
-    mouseYspring,
-    [-0.5, 0.5],
-    [12, -12]
-  );
- const rotateY = useTransform(
-    mouseXspring,
-    [0.5, -0.5],
-    [12, -12]
-  );
-
- // FUNCTION FOR TRACKING MOUSE POSITION RELATIVE TO OBJECT
-const handleMouseMove = (e)=>{
-  const rect = e.target.getBoundingClientRect();
-
-  const width = rect.width;
-  const height = rect.height;
-  const mouseX = e.clientX - rect.left;
-  const mouseY = e.clientY - rect.top;
-
-  const xPerc = mouseX / width - 0.5;
-  const yPerc = mouseY / height - 0.5;
-
-  imageX.set(xPerc);
-  imageY.set(yPerc);
-}
-// STOP TILTING IF MOUSE LEAVE
-const handleMouseLeave = () => {
-  imageX.set(0);
-  imageY.set(0);
-};
-
   return (
     <section id="about" className="about">
       <div className="container about__box">
@@ -159,27 +116,18 @@ const handleMouseLeave = () => {
             const position = getPosition(index);
 
             return (
-              <motion.img
-                onMouseMove={(e)=>{
-                  if(position === "center"){
-                    handleMouseMove(e);
-                  }
-                }}
-                onMouseLeave={handleMouseLeave}
-
-                //TILT EFFECT FOR CENTER IMAGE
-                style={{
-                  rotateX: position === "center" ? rotateX : 0,
-                  rotateY: position === "center" ? rotateY : 0,
-                }}
-
-                //ANIMATION
+              <TiltImage
                 key={image}
-                className="about__image"
                 src={image}
                 alt="Shellfish"
-                initial={false}
+                className="about__image"
+
+                //Enable Tilt
+                enableTilt={position === "center"}
+
+                //ANIMATION
                 variants={variants}
+                initial={false}
                 animate={position}
                 transition={{
                   duration: 0.85,
