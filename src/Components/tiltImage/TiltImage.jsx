@@ -1,6 +1,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import "../tiltImage/TiltImage.css";
+import { useEffect } from "react";
 
 export default function TiltImage({
   src,
@@ -21,6 +22,15 @@ export default function TiltImage({
   const imageX = useMotionValue(0);
   const imageY = useMotionValue(0);
 
+  //reset tilt position during switches
+  //(needed for animation in "About" section in Home)
+  useEffect(()=>{
+    if(!enableTilt){
+      imageX.set(0)
+      imageY.set(0)
+    }
+  },[enableTilt]);
+  
   // smooth mouse motion values with Spring
   const mouseXSpring = useSpring(imageX, {
     stiffness: 150,
