@@ -1,6 +1,18 @@
 import "../reservation/SuccessModal.css";
+import { useEffect } from "react";
 
 export default function SuccessModal({ booking, onClose }) {
+
+  useEffect(() => {
+    if (!booking) return;
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [booking]);
+
   if (!booking) {
     return null;
   }

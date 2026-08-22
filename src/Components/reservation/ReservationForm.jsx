@@ -1,7 +1,6 @@
 
 import { useState } from "react";
 import "./Reservation.css";
-import SuccessModal from "../../components/reservation/SuccessModal";
 
 const availableTimes = ["17:00", "18:00", "19:00", "20:00", "21:00"];
 
@@ -20,11 +19,8 @@ export default function ReservationForm({ onSubmit }) {
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
   const [submitted, setSubmitted] = useState(false);
-  // success modal state
-  const [lastBooking, setLastBooking] = useState(null);
 
   function getToday() {
-
     const date = new Date();
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -67,7 +63,6 @@ export default function ReservationForm({ onSubmit }) {
   }
 
   function handleBlur(e) {
-
     const { name } = e.target;
 
     setTouched((prev) => ({
@@ -160,13 +155,11 @@ export default function ReservationForm({ onSubmit }) {
 
 
   function handleSubmit(e) {
-
     e.preventDefault();
 
     setSubmitted(true);
 
     const validationErrors = validate();
-
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length > 0) {
@@ -180,11 +173,29 @@ export default function ReservationForm({ onSubmit }) {
       phone: form.phone.trim(),
 
     };
-    setLastBooking(cleanedForm);
-
+    
     onSubmit?.(cleanedForm);
-
   }
+
+  function renderError(fieldName) {
+      const showError =
+        (touched[fieldName] || submitted) && errors[fieldName];
+
+      return (
+        <span
+          className="reservation-form__error"
+          role="alert"
+          aria-hidden={!showError}
+        >
+          {showError && (
+            <>
+              <span className="reservation-form__error-icon">!</span>
+              {errors[fieldName]}
+            </>
+          )}
+        </span>
+      );
+    }
 
   return (
 
@@ -218,19 +229,7 @@ export default function ReservationForm({ onSubmit }) {
                 className={errors.name ? "input-error" : ""}
               />
 
-              <span
-                  className="reservation-form__error"
-                  role="alert"
-                  aria-hidden={!((touched.name || submitted) && errors.name)}
-                >
-                  {(touched.name || submitted) && errors.name && (
-                    <>
-                      <span className="reservation-form__error-icon">!</span>
-                      {errors.name}
-                    </>
-                  )}
-               </span>
-
+              {renderError("name")}
             </label>
 
             <label className="reservation-form__field">
@@ -247,20 +246,8 @@ export default function ReservationForm({ onSubmit }) {
                 aria-invalid={Boolean(errors.email)}
                 className={errors.email ? "input-error" : ""}
               />
-
-                <span
-                  className="reservation-form__error"
-                  role="alert"
-                  aria-hidden={!((touched.email || submitted) && errors.email)}
-                >
-                  {(touched.email || submitted) && errors.email && (
-                    <>
-                      <span className="reservation-form__error-icon">!</span>
-                      {errors.email}
-                    </>
-                  )}
-               </span>
-
+              
+             {renderError("email")}
             </label>
 
             <label className="reservation-form__field">
@@ -278,19 +265,7 @@ export default function ReservationForm({ onSubmit }) {
                 className={errors.phone ? "input-error" : ""}
               />
 
-              <span
-                  className="reservation-form__error"
-                  role="alert"
-                  aria-hidden={!((touched.phone || submitted) && errors.phone)}
-                >
-                  {(touched.phone || submitted) && errors.phone && (
-                    <>
-                      <span className="reservation-form__error-icon">!</span>
-                      {errors.phone}
-                    </>
-                  )}
-               </span>
-
+              {renderError("phone")}
             </label>
           </div>
 
@@ -311,18 +286,7 @@ export default function ReservationForm({ onSubmit }) {
                 className={errors.guests ? "input-error" : ""}
               />
 
-              <span
-                  className="reservation-form__error"
-                  role="alert"
-                  aria-hidden={!((touched.guests || submitted) && errors.guests)}
-                >
-                  {(touched.guests || submitted) && errors.guests && (
-                    <>
-                      <span className="reservation-form__error-icon">!</span>
-                      {errors.guests}
-                    </>
-                  )}
-               </span>
+              {renderError("guests")}
             </label>
 
             <label className="reservation-form__field">
@@ -339,18 +303,7 @@ export default function ReservationForm({ onSubmit }) {
                 className={errors.date ? "input-error" : ""}
               />
 
-              <span
-                  className="reservation-form__error"
-                  role="alert"
-                  aria-hidden={!((touched.date || submitted) && errors.date)}
-                >
-                  {(touched.date || submitted) && errors.date && (
-                    <>
-                      <span className="reservation-form__error-icon">!</span>
-                      {errors.date}
-                    </>
-                  )}
-               </span>
+              {renderError("date")}
             </label>
 
             <label className="reservation-form__field">
@@ -374,18 +327,7 @@ export default function ReservationForm({ onSubmit }) {
                 ))}
               </select>
 
-              <span
-                  className="reservation-form__error"
-                  role="alert"
-                  aria-hidden={!((touched.time || submitted) && errors.time)}
-                >
-                  {(touched.time || submitted) && errors.time && (
-                    <>
-                      <span className="reservation-form__error-icon">!</span>
-                      {errors.time}
-                    </>
-                  )}
-               </span>
+              {renderError("time")}
             </label>
           </div>
         </div>
@@ -400,14 +342,6 @@ export default function ReservationForm({ onSubmit }) {
 
         </div>
       </form>
-
-      {lastBooking && (
-          <SuccessModal
-            booking={lastBooking}
-            onClose={() => setLastBooking(null)}
-          />
-        )}
-
     </div>
 
   );

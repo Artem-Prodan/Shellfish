@@ -6,10 +6,18 @@ import ReservationForm from "../components/reservation/ReservationForm.jsx";
 import "./Home.css";
 import PartnerTicker from "../components/logoTickers/PartnerTicker.jsx";
 import { useOutletContext } from "react-router-dom";
+import { useState } from "react";
+import SuccessModal from "../Components/reservation/SuccessModal.jsx";
 
 
 export default function Home() {
   const {setShowHeaderReserve} = useOutletContext();
+
+  const [booking, setBooking] = useState(null);
+
+  const handleReservationSubmit = (newBooking) => {
+    setBooking(newBooking);
+  };
 
   return (
     <>
@@ -22,11 +30,16 @@ export default function Home() {
 
         <div className="home__reservation">
           <ReservationForm
-            onSubmit={(data) => {
-              console.log(data);
-            }}
+            onSubmit={handleReservationSubmit}
           />
         </div>
+
+        {booking && (
+          <SuccessModal
+            booking={booking}
+            onClose={() => setBooking(null)}
+          />
+        )}
     </>
   );
 }

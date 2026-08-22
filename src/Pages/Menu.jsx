@@ -3,10 +3,17 @@ import { useState } from "react";
 import "./Menu.css";
 import menuCategories from "../data/menu.js";
 import menuArrow from "../assets/icons/menuArrow.svg";
-import ReservationForm from "../Components/Reservation/ReservationForm.jsx";
+import ReservationForm from "../components/reservation/ReservationForm.jsx";
+import SuccessModal from "../Components/reservation/SuccessModal.jsx";
 
 export default function Menu() {
   const [openCategory, setOpenCategory] = useState(null);
+
+  const [booking, setBooking] = useState(null);
+
+  const handleReservationSubmit = (newBooking) => {
+    setBooking(newBooking);
+  };
 
   function toggleCategory(id) {
     setOpenCategory((current) =>
@@ -58,7 +65,17 @@ export default function Menu() {
       </div>
 
       <div className="menu__reservation">
-        <ReservationForm/>
+        <ReservationForm 
+          onSubmit={handleReservationSubmit}
+        />
+
+        {booking && (
+          <SuccessModal
+            booking={booking}
+            onClose={() => setBooking(null)}
+          />
+        )}
+
       </div>
 
     </section>
