@@ -134,16 +134,13 @@
    VERY SMALL SCREENS
 ========================= */
 @media (max-width: 500px) {
-
   .about {
     padding-top: 60px;
   }
   .about__images {
     height: 380px;
-
     margin-top: -80px;
     margin-bottom: -80px;
-
     overflow: hidden;
   }
   .about__image-wrapper {
@@ -151,9 +148,14 @@
 
     width: var(--image-width);
     height: 300px;
-
     left: 50%;
     margin-left: calc(var(--image-width) / -2);
   }
+}
 
+/* =========================
+   ABOUT SECTION OFFSET
+========================= */
+#about{
+  scroll-margin-top: 0px !important;
 }

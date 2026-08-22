@@ -1,100 +1,106 @@
 
-
-/* form container */
-
+/* =========================
+   FORM CONTAINER
+========================= */
 .reservation-form {
-
-  width: 100%;
-  max-width: 520px;
+  width: min(100%, 900px);
+  margin: 0 auto;
+  margin-bottom: 20px;
   padding: 24px;
-
-  background: var(--color-surface);
-
-  border-radius: var(--radius-md);
-
-  box-shadow: var(--shadow-sm);
-
   box-sizing: border-box;
-
 }
 
-/* title */
-
+/* =========================
+   TITLE
+========================= */
 .reservation-form__title {
-
+  width: 100%;
   margin: 0;
-
-  color: var(--color-primary);
-
+  text-align: center;
+  font-size: clamp(3.2rem, 6.2vw, 3.7rem);
+  line-height: 1.1;
 }
 
-/* form */
-
+/* =========================
+   FORM
+========================= */
 .reservation-form__form {
-
+  width: 100%;
   display: flex;
   flex-direction: column;
-
-  gap: 16px;
-
-  margin-top: 20px;
-
+  gap: 20px;
+  margin-top: 28px;
+  box-sizing: border-box;
 }
 
-/* field */
+/* =========================
+   FIELDS
+========================= */
+.fields-box {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 50px;
+}
 
-.reservation-form__field {
+.fields-wrapper {
+  width: 100%;
+  max-width: none;
 
   display: flex;
   flex-direction: column;
+  gap: 20px;
+}
 
-  font-size: 14px;
-
+/* =========================
+   FIELD
+========================= */
+.reservation-form__field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   gap: 6px;
 
+  font-size: clamp(1rem, 1.2vw, 1.6rem);
 }
 
-/* inputs */
-
+/* =========================
+   INPUT / SELECT
+========================= */
 .reservation-form__field input,
 .reservation-form__field select {
+  width: 100%;
+  height: 48px;
+  box-sizing: border-box;
 
   padding: 12px;
 
   border: 1px solid var(--color-border);
-
   border-radius: var(--radius-sm);
 
   transition: var(--transition);
-
   background: white;
-
   font: inherit;
-
 }
 
-/* focus */
-
+/* =========================
+   FOCUS
+========================= */
 .reservation-form__field input:focus,
 .reservation-form__field select:focus {
-
   border-color: var(--color-primary);
-
   outline: none;
-
 }
 
+/* =========================
+   ERROR INPUT
+========================= */
 .reservation-form__field:has(.input-error) > span:first-child {
-
   color: var(--color-error);
-
 }
-
-/* error input */
 
 .reservation-form__field input.input-error,
 .reservation-form__field select.input-error {
-
   border-color: var(--color-error);
 
   background: color-mix(
@@ -102,143 +108,172 @@
     var(--color-error) 3%,
     white
   );
-
 }
 
-/* error message */
-
+/* =========================
+   ERROR MESSAGE
+========================= */
+/*
+  make space for future errors in advance so fields would not jump
+*/
 .reservation-form__error {
+  min-height: 18px;
 
   display: flex;
-
   align-items: center;
-
   gap: 7px;
 
   margin-top: 1px;
-
   padding-left: 2px;
 
   color: var(--color-error);
 
   font-size: 12px;
-
   line-height: 1.3;
-
   font-weight: 500;
 
   animation: reservation-error-in 0.2s ease-out;
-
 }
 
+/*
+  fields are the same even if there's no error
+*/
+.reservation-form__field {
+  position: relative;
+}
+
+/* =========================
+   ERROR ICON
+========================= */
 .reservation-form__error-icon {
-
   display: inline-flex;
-
   align-items: center;
   justify-content: center;
 
   width: 15px;
   height: 15px;
-
   flex: 0 0 15px;
 
   border: 1px solid currentColor;
-
   border-radius: 50%;
 
   font-size: 10px;
-
   font-weight: 700;
-
   line-height: 1;
-
 }
 
+/* =========================
+   ERROR ANIMATION
+========================= */
 @keyframes reservation-error-in {
-
   from {
-
     opacity: 0;
-
     transform: translateY(-3px);
-
   }
 
   to {
-
     opacity: 1;
-
     transform: translateY(0);
-
   }
-
 }
 
-/* button */
+/* =========================
+   BUTTON
+========================= */
+.button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 20px;
+}
 
 .reservation-form__button {
-
-  margin-top: 10px;
+  width: 100%;
+  height: 48px;
 
   padding: 12px;
 
   border: none;
-
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
 
   background: var(--color-secondary);
-
   color: #000;
 
+  font: inherit;
   font-weight: 700;
 
   cursor: pointer;
-
   transition: var(--transition);
-
+  box-sizing: border-box;
 }
 
-/* hover */
-
+/* =========================
+   BUTTON HOVER
+========================= */
 .reservation-form__button:hover {
-
   transform: translateY(-2px);
-
   box-shadow: var(--shadow-md);
-
 }
 
-/* disabled state */
-
+/* =========================
+   BUTTON DISABLED
+========================= */
 .reservation-form__button:disabled {
-
   opacity: 0.4;
-
   cursor: not-allowed;
 
   transform: none;
-
   box-shadow: none;
-
 }
 
-/* reservation section offset */
-
-#reservation {
-
-  scroll-margin-top: 120px !important;
-
+/* =========================
+   ADAPTIVITY
+========================= */
+@media (max-width: 800px) {
+  .reservation-form {
+    width: min(100%, 700px);
+    padding: 20px;
+  }
+  .fields-wrapper {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
 }
 
-/* responsive */
+@media (max-width: 700px) {
+  .fields-box {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
 
 @media (max-width: 600px) {
-
   .reservation-form {
-
-    padding: 20px;
-
+    width: 100%;
+    padding: 20px 16px;
   }
+  .reservation-form__title {
+    font-size: clamp(2.2rem, 10vw, 3rem);
+  }
+  .reservation-form__form {
+    margin-top: 24px;
+  }
+  .fields-wrapper {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .reservation-form__field input,
+  .reservation-form__field select,
+  .reservation-form__button {
+    height: 46px;
+  }
+}
 
+/* =========================
+   RESERVATION SECTION OFFSET
+========================= */
+#reservation {
+  scroll-margin-top: 100px !important;
 }
