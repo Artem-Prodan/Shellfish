@@ -1,14 +1,13 @@
 
 import { useState } from "react";
-
 import "./Reservation.css";
+import SuccessModal from "../../components/reservation/SuccessModal";
 
 const availableTimes = ["17:00", "18:00", "19:00", "20:00", "21:00"];
 
 export default function ReservationForm({ onSubmit }) {
 
   const [form, setForm] = useState({
-
     name: "",
     email: "",
     phone: "",
@@ -21,25 +20,23 @@ export default function ReservationForm({ onSubmit }) {
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  // success modal state
+  const [lastBooking, setLastBooking] = useState(null);
 
   function getToday() {
 
     const date = new Date();
-
     const year = date.getFullYear();
-
     const month = String(date.getMonth() + 1).padStart(2, "0");
 
     const day = String(date.getDate()).padStart(2, "0");
 
     return `${year}-${month}-${day}`;
-
   }
 
   const today = getToday();
 
   function handleChange(e) {
-
     const { name, value } = e.target;
 
     const newValue =
@@ -173,20 +170,17 @@ export default function ReservationForm({ onSubmit }) {
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length > 0) {
-
       return;
-
     }
 
     const cleanedForm = {
-
       ...form,
-
       name: form.name.trim(),
       email: form.email.trim(),
       phone: form.phone.trim(),
 
     };
+    setLastBooking(cleanedForm);
 
     onSubmit?.(cleanedForm);
 
@@ -403,9 +397,16 @@ export default function ReservationForm({ onSubmit }) {
           >
             Confirm reservation
           </button>
-        </div>
 
+        </div>
       </form>
+
+      {lastBooking && (
+          <SuccessModal
+            booking={lastBooking}
+            onClose={() => setLastBooking(null)}
+          />
+        )}
 
     </div>
 

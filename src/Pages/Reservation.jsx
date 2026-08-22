@@ -77,12 +77,11 @@ export default function Reservation() {
     return (
       <section className="booking">
         <div className="container">
+
           <div className="booking__success">
             <div className="success__badge">
               ✓</div>
-
             <h1>Booking confirmed</h1>
-
             <div className="success__card">
               <p><strong>Date:</strong> {lastBooking.date}</p>
               <p><strong>Time:</strong> {lastBooking.time}</p>
@@ -94,6 +93,7 @@ export default function Reservation() {
               Make another booking
             </button>
           </div>
+          
         </div>
       </section>
     );

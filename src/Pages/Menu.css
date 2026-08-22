@@ -155,3 +155,7 @@
   font-size: clamp(1rem, 1.2vw, 1.9rem);
   line-height: 1.2;
 }
+
+.menu__reservation{
+  margin-top: 60px;
+}
